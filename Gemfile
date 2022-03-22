@@ -60,3 +60,9 @@ gem 'devise'
 gem 'simple_form', github: 'heartcombo/simple_form'
 gem "autoprefixer-rails", "10.2.5"
 gem "font-awesome-sass", "~> 5.6.1"
+
+#
+gem "roo", "~> 2.8"
+gem 'caxlsx'
+gem 'caxlsx_rails'
+gem 'roo-xls'
