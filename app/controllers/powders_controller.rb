@@ -3,6 +3,7 @@ class PowdersController < ApplicationController
 
   def index
     @powders = Powder.all
+    @powders = policy_scope(Powder)
     respond_to do |format|
       format.xls
       format.xlsx { response.headers['Content-Disposition'] = 'attachment; filename="powders.xlsx"' }
@@ -18,7 +19,7 @@ class PowdersController < ApplicationController
 
   def update
     if @powder.update(powder_params)
-      redirect_to root_path, notice: "已成功更新#{@powder.name}"
+      redirect_to powders_path, notice: "已成功更新#{@powder.name}"
     else
       render :edit
     end
@@ -26,10 +27,12 @@ class PowdersController < ApplicationController
 
   def new
     @powder = Powder.new
+    authorize @powder
   end
 
   def create
     @powder = Powder.new(powder_params)
+    authorize @powder
     respond_to do |format|
       if @powder.save
         format.html { redirect_to powder_path(@powder), notice: "已新增#{@powder.name}" }
@@ -42,13 +45,14 @@ class PowdersController < ApplicationController
   end
 
   def destroy
+    authorize @powder
     @powder.destroy
-    redirect_to root_path, notice: "已删除药品"
+    redirect_to powders_path, notice: "已删除药品"
   end
 
   def import
     Powder.import(params[:file])
-    redirect_to root_path, notice: "已成功入库'#{params[:file].original_filename}'"
+    redirect_to powders_path, notice: "已成功入库'#{params[:file].original_filename}'"
   end
 
   def export
