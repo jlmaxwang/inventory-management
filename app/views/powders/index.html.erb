@@ -1,0 +1,34 @@
+<%= render 'shared/navbar' %>
+<h1>药粉</h1>
+  <p class="alert"><%= alert %></p>
+  <%= render 'shared/flashes' %>
+
+<div class="container d-flex justify-content-start">
+  <%= link_to "新增药品", new_powder_path, :class =>'btn btn-outline-primary'%>
+  <% @powders.each do |powder| %>
+  <div class="card ms-1" style="width: 18rem;">
+      <div class="card-body">
+        <a href="<%= powder_path(powder) %>">
+          <h5 class="card-title display-6"><%= powder.name%></h5>
+          <h6 class="card-subtitle mt-3 mb-3 text-muted">现有库存：<%= powder.qty_init %></h6>
+          <p class="card-text mb-3">库位:<%= powder.location %></p>
+          <a href="<%= edit_powder_path(powder.id) %>" class="card-link mb-3">编辑</a>
+          <%= link_to "删除", powder_path(powder.id), method: :delete, data:{ confirm: '确认?' }, class: "card-link mb-3" %>
+
+        </a>
+      </div>
+  </div>
+  <% end %>
+</div>
+
+<%# export %>
+<%=
+  link_to 'Download as Excel',
+  powders_path(format: :xlsx)
+%>
+
+<%= form_tag import_powders_path, multipart: true do %>
+  <%= label_tag :file, '选择入库单' %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "上传入库单", class:"btn btn-mini btn-success hidden" %>
+<% end %>
