@@ -1,0 +1,2 @@
+class Powder < ApplicationRecord
+end

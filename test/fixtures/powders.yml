@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  pin_yin: MyString
+  price_bulk: 9.99
+  price_retail: 9.99
+  qty_init: 1
+  qty_inport: 1
+  qty_export: 1
+  location: MyString
+  comment: MyString
+
+two:
+  name: MyString
+  pin_yin: MyString
+  price_bulk: 9.99
+  price_retail: 9.99
+  qty_init: 1
+  qty_inport: 1
+  qty_export: 1
+  location: MyString
+  comment: MyString
