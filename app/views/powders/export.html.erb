@@ -1,0 +1,6 @@
+<h1>chuku</h1>
+<%= form_tag export_powder_powders_path, multipart: true do%>
+  <%= label_tag :file, '选择出库单' %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "上传出库单", class:"btn btn-mini btn-success hidden" %>
+<% end %>
