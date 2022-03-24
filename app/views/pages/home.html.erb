@@ -1,13 +1,12 @@
-<%= render 'shared/navbar' %>
-<%= link_to "登陆", new_user_registration_path %>
+<%= link_to "登陆", new_user_session_path %>
 <% if user_signed_in? %>
-<%= current_user.user_name %>
+  <p>欢迎 <%= current_user.user_name %></p>
 <% else %>
-<%= 'NO user' %>
+  <%= '需要登陆' %>
 <% end %>
 <h1>宝芝堂</h1>
-<div class="landing-buttons">
 
+<div class="landing-buttons">
 <%= link_to "入库", class:"btn btn primary" %>
 <%= link_to "出库" , class:"btn btn primary"%>
 <%= link_to "查询", powders_path, class:"btn btn primary" %>
