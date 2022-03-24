@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_22_093357) do
+ActiveRecord::Schema.define(version: 2022_03_23_010541) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,12 +27,13 @@ ActiveRecord::Schema.define(version: 2022_03_22_093357) do
     t.decimal "price_bulk"
     t.decimal "price_retail"
     t.integer "qty_init"
-    t.integer "qty_inport"
+    t.integer "qty_import"
     t.integer "qty_export"
     t.string "location"
     t.string "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "qty_onhand", default: 0
   end
 
   create_table "suppliers", force: :cascade do |t|
