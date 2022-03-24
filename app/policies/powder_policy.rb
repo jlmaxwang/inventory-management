@@ -34,6 +34,22 @@ class PowderPolicy < ApplicationPolicy
     true
   end
 
+  def import
+    true
+  end
+
+  def export
+    true
+  end
+
+  def import_powder
+    true
+  end
+
+  def export_powder
+    true
+  end
+
   class Scope
     def initialize(user, scope)
       @user = user
