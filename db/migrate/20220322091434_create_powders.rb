@@ -6,7 +6,7 @@ class CreatePowders < ActiveRecord::Migration[6.1]
       t.decimal :price_bulk
       t.decimal :price_retail
       t.integer :qty_init
-      t.integer :qty_inport
+      t.integer :qty_import
       t.integer :qty_export
       t.string :location
       t.string :comment
