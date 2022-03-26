@@ -1,8 +1,17 @@
 <%= render 'shared/navbar' %>
 <h1>药粉</h1>
+<div>
+    <%= form_tag powders_path, method: :get do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "查找药粉"
+    %>
+    <%= submit_tag "查询", class: "btn btn-primary" %>
+  <% end %>
+</div>
   <p class="alert"><%= alert %></p>
   <%= render 'shared/flashes' %>
-
 <div class="container d-flex justify-content-start">
   <%= link_to "新增药品", new_powder_path, :class =>'btn btn-outline-primary'%>
   <% @powders.each do |powder| %>
@@ -18,7 +27,6 @@
           <p class="card-text mb-3">库位:<%= powder.location %></p>
           <a href="<%= edit_powder_path(powder.id) %>" class="card-link mb-3">编辑</a>
           <%= link_to "删除", powder_path(powder.id), method: :delete, data:{ confirm: '确认?' }, class: "card-link mb-3" %>
-
         </a>
       </div>
   </div>
