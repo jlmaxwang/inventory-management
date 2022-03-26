@@ -1,4 +1,11 @@
 class Powder < ApplicationRecord
+  validates :name, :pin_yin, :price_bulk, :price_retail, :location, presence: true
+  include PgSearch::Model
+  pg_search_scope :search_by_name_and_pin_yin,
+    against: [ :name, :pin_yin ],
+    using: {
+      tsearch: { prefix: true }
+    }
 
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
