@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_23_010541) do
+ActiveRecord::Schema.define(version: 2022_03_24_143223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,9 +26,9 @@ ActiveRecord::Schema.define(version: 2022_03_23_010541) do
     t.string "pin_yin"
     t.decimal "price_bulk"
     t.decimal "price_retail"
-    t.integer "qty_init"
+    t.integer "qty_init", default: 0
     t.integer "qty_import"
-    t.integer "qty_export"
+    t.integer "qty_export", default: 0
     t.string "location"
     t.string "comment"
     t.datetime "created_at", precision: 6, null: false

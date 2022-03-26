@@ -10,7 +10,9 @@
       <div class="card-body">
         <a href="<%= powder_path(powder) %>">
           <h5 class="card-title display-6"><%= powder.name%></h5>
-          <h6 class="card-subtitle mt-3 mb-3 text-muted">现有库存：<%= powder.qty_onhand %></h6>
+          <h6 class="card-subtitle mt-3 mb-3 text-muted">现有库存：<%= powder.qty_init + powder.qty_onhand %></h6>
+          <p class="alert"><%= alert %></p>
+          <p class="card-text mb-3">原始库存: <%= powder.qty_init %></p>
           <p class="card-text mb-3">本次入库数量: <%= powder.qty_import %></p>
           <p class="card-text mb-3">本次出库数量: <%= powder.qty_export %></p>
           <p class="card-text mb-3">库位:<%= powder.location %></p>
@@ -28,16 +30,3 @@
 
 <%= link_to 'import', import_powders_path %>
 <%= link_to 'export', export_powders_path %>
-<% if false %>
-<%= form_tag import_powders_path, multipart: true do %>
-  <%= label_tag :file, '选择入库单' %>
-  <%= file_field_tag :file %>
-  <%= submit_tag "上传入库单", class:"btn btn-mini btn-success hidden" %>
-<% end %>
-
-<%= form_tag export_powders_path, multipart: true do%>
-  <%= label_tag :file, '选择出库单' %>
-  <%= file_field_tag :file %>
-  <%= submit_tag "上传出库单", class:"btn btn-mini btn-success hidden" %>
-<% end %>
-<% end %>

@@ -67,12 +67,34 @@ class PowdersController < ApplicationController
 
   def export_powder
     if params[:file].nil?
-      redirect_to powders_path, notice: '请上传文件'
+      redirect_to export_powders_path, notice: '请上传文件'
     else
-      Powder.export(params[:file])
-      redirect_to powders_path, notice: "已成功出库'#{params[:file].original_filename}'"
+      spreadsheet = Powder.open_spreadsheet(params[:file])
+      header = spreadsheet.row(1)
+      (2..spreadsheet.last_row).each do |i|
+        row = Hash[[header, spreadsheet.row(i)].transpose]
+        powder = Powder.find_by_name(row['name'])
+        powder.attributes = row.to_hash
+        if powder.qty_onhand < powder.qty_export
+          break redirect_to powders_path, notice: 'kucunbuzu'
+        else
+          powder.qty_onhand -= powder.qty_export
+          powder.save
+        end
+      end
     end
+    redirect_to powders_path
   end
+
+  # def spreadsheet
+  #   spreadsheet = Powder.open_spreadsheet(params[:file])
+  #   header = spreadsheet.row(1)
+  #   (2..spreadsheet.last_row).each do |i|
+  #     row = Hash[[header, spreadsheet.row(i)].transpose]
+  #     @powder = Powder.find_by_name(row['name'])
+  #     @powder.attributes = row.to_hash
+  #   end
+  # end
 
   def select
   end
