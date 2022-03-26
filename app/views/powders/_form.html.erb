@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+      <h1>新增药品</h1>
+      <%= simple_form_for @powder do |f| %>
+        <%= f.input :name, label: "名称" %>
+        <%= f.input :stockonhand, label: "现有库存" %>
+        <%= f.input :inqty, label: "入库数量" %>
+        <%= f.input :price_retail, label: "零售价格" %>
+        <%= f.input :price_bulk, label: "进货价格" %>
+        <%= f.input :location, label: "库位" %>
+        <%= f.association :supplier, label: "名称", prompt:'选择供应商' %>
+        <%= f.button :submit, class: 'btn btn-primary', value:'确认修改' %>
+        <%= link_to "返回", root_path, class: 'btn btn-primary' %>
+        <%= link_to '删除药品', powder_path(powder), method: :delete, data:{ confirm: "确定删除？"}, class: "btn btn-outline-danger"%>
+      <% end %>
+    </div>
+  </div>
+</div>
