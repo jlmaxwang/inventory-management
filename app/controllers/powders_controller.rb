@@ -2,7 +2,15 @@ class PowdersController < ApplicationController
   before_action :set_powder, only:[:show, :select, :update, :edit, :destroy]
 
   def index
-    @powders = Powder.all
+    if params[:query].present?
+      sql_query = " \
+        powder.name ILIKE :query \
+        OR powder.pin_yin ILIKE :query \
+      "
+      @powder = Powder.joins(:name).where(sql_query, query: "%#{params[:query]}%")
+    else
+      @powder = Powder.all
+    end
     @powders = policy_scope(Powder)
     respond_to do |format|
       format.xls
@@ -12,12 +20,15 @@ class PowdersController < ApplicationController
   end
 
   def show
+    authorize @powder
   end
 
   def edit
+    authorize @powder
   end
 
   def update
+    authorize @powder
     if @powder.update(powder_params)
       redirect_to powders_path, notice: "已成功更新#{@powder.name}"
     else
@@ -106,6 +117,6 @@ class PowdersController < ApplicationController
   end
 
   def powder_params
-    params.require(:powder).permit(:name, :pinyin, :botanical_name, :qty_init, :qty_import, :qty_export, :location, :price_retail, :price_bulk, :qty_onhand)
+    params.require(:powder).permit(:name, :pin_yin, :botanical_name, :qty_init, :qty_import, :qty_export, :location, :price_retail, :price_bulk, :qty_onhand)
   end
 end
