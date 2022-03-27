@@ -4,7 +4,8 @@ class Powder < ApplicationRecord
   pg_search_scope :search_by_name_and_pin_yin,
     against: [ :name, :pin_yin ],
     using: {
-      tsearch: { prefix: true }
+      trigram: {},
+      tsearch: { prefix: true, any_word: true },
     }
 
   def self.import(file)
