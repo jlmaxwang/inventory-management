@@ -13,7 +13,7 @@
   <p class="alert"><%= alert %></p>
   <%= render 'shared/flashes' %>
 <div class="container d-flex justify-content-start">
-  <%= link_to "新增药品", new_powder_path, :class =>'btn btn-outline-primary'%>
+  <%= link_to "新增药品", new_powder_path, class:'btn btn-outline-primary'%>
   <% @powders.each do |powder| %>
   <div class="card ms-1" style="width: 18rem;">
       <div class="card-body">

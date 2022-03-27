@@ -1,7 +1,7 @@
 <div class="card" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title"><%= @powder.name %></h5>
-    <h6 class="card-subtitle mb-2 text-muted">现有库存：<%= @powder.qty_onhand += @powder.qty_import %></h6>
+    <h6 class="card-subtitle mb-2 text-muted">现有库存：<%= @powder.qty_onhand + @powder.qty_import %></h6>
     <p class="card-text">库位:<%= @powder.location %></p>
     <p class="card-text">今日入库：<%= @powder.qty_import %></p>
     <p class="card-text">零售价：<%= @powder.price_retail %></p>
