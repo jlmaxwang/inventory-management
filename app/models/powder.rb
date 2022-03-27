@@ -5,7 +5,7 @@ class Powder < ApplicationRecord
     against: [ :name, :pin_yin ],
     using: {
       trigram: {},
-      tsearch: { prefix: true, any_word: true },
+      tsearch: { prefix: true, any_word: true }
     }
 
   def self.import(file)
@@ -19,18 +19,6 @@ class Powder < ApplicationRecord
       powder.save
     end
   end
-
-  # def self.export(file)
-  #   spreadsheet = open_spreadsheet(file)
-  #   header = spreadsheet.row(1)
-  #   (2..spreadsheet.last_row).each do |i|
-  #     row = Hash[[header, spreadsheet.row(i)].transpose]
-  #     powder = find_by_name(row['name'])
-  #     powder.attributes = row.to_hash
-  #     powder.qty_onhand -= powder.qty_export
-  #     powder.save
-  #   end
-  # end
 
   def self.open_spreadsheet(file)
     case File.extname(file.original_filename)
