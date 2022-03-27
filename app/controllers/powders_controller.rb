@@ -2,21 +2,25 @@ class PowdersController < ApplicationController
   before_action :set_powder, only:[:show, :select, :update, :edit, :destroy]
 
   def index
-    if params[:query].present?
-      sql_query = " \
-        powder.name ILIKE :query \
-        OR powder.pin_yin ILIKE :query \
-      "
-      @powder = Powder.joins(:name).where(sql_query, query: "%#{params[:query]}%")
-    else
-      @powder = Powder.all
-    end
     @powders = policy_scope(Powder)
+    if params[:query].present?
+      @powders = Powder.search_by_name_and_pin_yin(params[:query])
+    else
+      @powders = Powder.all
+    end
     respond_to do |format|
+      format.html { render :index }
+      format.json { render json: { powders: @powders } }
       format.xls
       format.xlsx { response.headers['Content-Disposition'] = 'attachment; filename="powders.xlsx"' }
-      format.html { render :index }
     end
+    # @powders = Powder.all
+    # @powders = policy_scope(Powder)
+    # respond_to do |format|
+    #   format.xls
+    #   format.xlsx { response.headers['Content-Disposition'] = 'attachment; filename="powders.xlsx"' }
+    #   format.html { render :index }
+    # end
   end
 
   def show
