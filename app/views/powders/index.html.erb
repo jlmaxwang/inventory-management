@@ -1,40 +1,43 @@
-<%= render 'shared/navbar' %>
-<h1>药粉</h1>
-<div>
-    <%= form_tag powders_path, method: :get do %>
-    <%= text_field_tag :query,
-      params[:query],
-      class: "form-control",
-      placeholder: "查找药粉"
-    %>
-    <%= submit_tag "查询", class: "btn btn-primary" %>
-  <% end %>
-</div>
-  <p class="alert"><%= alert %></p>
-  <%= render 'shared/flashes' %>
-<div class="container d-flex justify-content-start">
-  <%= link_to "新增药品", new_powder_path, class:'btn btn-outline-primary'%>
-  <% @powders.each do |powder| %>
-  <div class="card ms-1" style="width: 18rem;">
-      <div class="card-body">
-        <a href="<%= powder_path(powder) %>">
-          <h5 class="card-title display-6"><%= powder.name%></h5>
-          <h6 class="card-subtitle mt-3 mb-3 text-muted">现有库存：<%= powder.qty_init + powder.qty_onhand %></h6>
-          <p class="alert"><%= alert %></p>
-          <p class="card-text mb-3">原始库存: <%= powder.qty_init %></p>
-          <p class="card-text mb-3">本次入库数量: <%= powder.qty_import %></p>
-          <p class="card-text mb-3">本次出库数量: <%= powder.qty_export %></p>
-          <p class="card-text mb-3">库位:<%= powder.location %></p>
-          <a href="<%= edit_powder_path(powder.id) %>" class="card-link mb-3">编辑</a>
-          <%= link_to "删除", powder_path(powder.id), method: :delete, data:{ confirm: '确认?' }, class: "card-link mb-3" %>
-        </a>
-      </div>
+<% if false %>
+  <%= render 'shared/navbar' %>
+  <h1>药粉</h1>
+  <div>
+      <%= form_tag powders_path, method: :get do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "查找药粉"
+      %>
+      <%= submit_tag "查询", class: "btn btn-primary" %>
+    <% end %>
   </div>
-  <% end %>
-</div>
+    <p class="alert"><%= alert %></p>
+    <%= render 'shared/flashes' %>
+  <div class="container d-flex justify-content-start">
+    <%= link_to "新增药品", new_powder_path, class:'btn btn-outline-primary'%>
+    <% @powders.each do |powder| %>
+    <div class="card ms-1" style="width: 18rem;">
+        <div class="card-body">
+          <a href="<%= powder_path(powder) %>">
+            <h5 class="card-title display-6"><%= powder.name%></h5>
+            <h6 class="card-subtitle mt-3 mb-3 text-muted">qty_init+qty_onhand=<%= powder.qty_init + powder.qty_onhand %></h6>
+            <p class="alert"><%= alert %></p>
+            <p class="card-text mb-3">原始库存: <%= powder.qty_init %></p>
+            <p class="card-text mb-3">qty_onhand: <%= powder.qty_onhand %></p>
+            <p class="card-text mb-3">本次入库数量: <%= powder.qty_import %></p>
+            <p class="card-text mb-3">本次出库数量: <%= powder.qty_export %></p>
+            <p class="card-text mb-3">库位:<%= powder.location %></p>
+            <a href="<%= edit_powder_path(powder.id) %>" class="card-link mb-3">编辑</a>
+            <%= link_to "删除", powder_path(powder.id), method: :delete, data:{ confirm: '确认?' }, class: "card-link mb-3" %>
+          </a>
+        </div>
+    </div>
+    <% end %>
+  </div>
 
-<%# export %>
-<%= link_to '下载库存单', powders_path(format: :xlsx) %>
+  <%# export %>
+  <%= link_to '下载库存单', powders_path(format: :xlsx) %>
 
-<%= link_to 'import', import_powders_path %>
-<%= link_to 'export', export_powders_path %>
+  <%= link_to 'import', import_powders_path %>
+  <%= link_to 'export', export_powders_path %>
+<% end %>
