@@ -1,5 +1,5 @@
 class Powder < ApplicationRecord
-  validates :name, :pin_yin, :price_bulk, :price_retail, :location, presence: true
+  validates :name, :pin_yin, :location, presence: true
   include PgSearch::Model
   pg_search_scope :search_by_name_and_pin_yin,
     against: [ :name, :pin_yin ],

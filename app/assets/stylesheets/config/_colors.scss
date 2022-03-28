@@ -8,3 +8,9 @@ $orange: #E67E22;
 $green: #1EDD88;
 $gray: #0E0000;
 $light-gray: #F4F4F4;
+
+//vars
+
+$blue: #626E7E;
+$light: lighten($blue, 40%);
+$light2: darken($light, 3%);

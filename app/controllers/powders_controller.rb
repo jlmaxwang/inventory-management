@@ -6,6 +6,7 @@ class PowdersController < ApplicationController
     if params[:query].present?
       @powders = Powder.search_by_name_and_pin_yin(params[:query])
     else
+      # @powders = Powder.all
       @powders = Powder.order('pin_yin ASC')
     end
     respond_to do |format|
@@ -14,13 +15,6 @@ class PowdersController < ApplicationController
       format.xls
       format.xlsx { response.headers['Content-Disposition'] = 'attachment; filename="powders.xlsx"' }
     end
-    # @powders = Powder.all
-    # @powders = policy_scope(Powder)
-    # respond_to do |format|
-    #   format.xls
-    #   format.xlsx { response.headers['Content-Disposition'] = 'attachment; filename="powders.xlsx"' }
-    #   format.html { render :index }
-    # end
   end
 
   def show
@@ -100,16 +94,6 @@ class PowdersController < ApplicationController
     end
   end
 
-  # def spreadsheet
-  #   spreadsheet = Powder.open_spreadsheet(params[:file])
-  #   header = spreadsheet.row(1)
-  #   (2..spreadsheet.last_row).each do |i|
-  #     row = Hash[[header, spreadsheet.row(i)].transpose]
-  #     @powder = Powder.find_by_name(row['name'])
-  #     @powder.attributes = row.to_hash
-  #   end
-  # end
-
   def select
   end
 
@@ -120,6 +104,6 @@ class PowdersController < ApplicationController
   end
 
   def powder_params
-    params.require(:powder).permit(:name, :pin_yin, :botanical_name, :qty_init, :qty_import, :qty_export, :location, :price_retail, :price_bulk, :qty_onhand)
+    params.require(:powder).permit(:name, :pin_yin, :qty_onhand, :qty_import, :qty_export, :location, :price_retail, :price_bulk)
   end
 end

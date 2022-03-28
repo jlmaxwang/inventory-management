@@ -1,20 +1,19 @@
+<%= render 'shared/navbar' %>
+<div style="width:50%; margin:10px auto;">
+  <%= form_tag powders_path, method: :get do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "查找药粉"
+    %>
+    <%= submit_tag "查询", class: "btn btn-primary" %>
+  <% end %>
+</div>
+  <p class="alert"><%= alert %></p>
+  <%= render 'shared/flashes' %>
+  <%= link_to "新增药品", new_powder_path, class:'btn btn-outline-primary'%>
 <% if false %>
-  <%= render 'shared/navbar' %>
-  <h1>药粉</h1>
-  <div>
-      <%= form_tag powders_path, method: :get do %>
-      <%= text_field_tag :query,
-        params[:query],
-        class: "form-control",
-        placeholder: "查找药粉"
-      %>
-      <%= submit_tag "查询", class: "btn btn-primary" %>
-    <% end %>
-  </div>
-    <p class="alert"><%= alert %></p>
-    <%= render 'shared/flashes' %>
   <div class="container d-flex justify-content-start">
-    <%= link_to "新增药品", new_powder_path, class:'btn btn-outline-primary'%>
     <% @powders.each do |powder| %>
     <div class="card ms-1" style="width: 18rem;">
         <div class="card-body">
@@ -41,3 +40,38 @@
   <%= link_to 'import', import_powders_path %>
   <%= link_to 'export', export_powders_path %>
 <% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th><span class="long">首字母</span></th>
+      <th>
+        <span class="long">名称</span>
+      </th>
+      <th>
+        <span class="long">库位</span>
+      </th>
+      <th>
+        <span class="long" style="text-algin: center">库存</span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+  <% pinyin = Array.new %>
+  <% @powders.each { |powder| pinyin << powder.pin_yin[0]} %>
+  <% counts = Hash.new(0) %>
+  <% @powders.each {|i| counts[i.pin_yin[0]] += 1} %>
+  <%= counts %>
+
+  <% @powders.each do |powder| %>
+  <tr>
+  <td class="hour" rowspan="1" ><%= powder.pin_yin[0].upcase %></td>
+  <td><%= powder.name %></td>
+  <td><%= powder.location %></td>
+  <td><%= powder.qty_onhand %></td>
+  </tr>
+  <% end %>
+  </tbody>
+
+</table>
+    <%= link_to '入库', import_powders_path, class:"btn btn primary" %>
