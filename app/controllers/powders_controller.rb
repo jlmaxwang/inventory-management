@@ -6,7 +6,7 @@ class PowdersController < ApplicationController
     if params[:query].present?
       @powders = Powder.search_by_name_and_pin_yin(params[:query])
     else
-      @powders = Powder.all
+      @powders = Powder.order('pin_yin ASC')
     end
     respond_to do |format|
       format.html { render :index }
@@ -91,14 +91,13 @@ class PowdersController < ApplicationController
         powder = Powder.find_by_name(row['name'])
         powder.attributes = row.to_hash
         if powder.qty_onhand < powder.qty_export
-          break redirect_to powders_path, notice: 'kucunbuzu'
+          break redirect_to powders_path, notice: "'#{powder.name}'库存不足"
         else
           powder.qty_onhand -= powder.qty_export
           powder.save
         end
       end
     end
-    redirect_to powders_path
   end
 
   # def spreadsheet
