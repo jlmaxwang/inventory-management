@@ -57,18 +57,18 @@
     </tr>
   </thead>
   <tbody>
-  <% pinyin = Array.new %>
-  <% @powders.each { |powder| pinyin << powder.pin_yin[0]} %>
-  <% counts = Hash.new(0) %>
-  <% @powders.each {|i| counts[i.pin_yin[0]] += 1} %>
-  <%= counts %>
+
+    <% counts = Hash.new(0) %>
+    <% @powders.each {|i| counts[i.pin_yin[0]] += 1} %>
+    <%= counts %>
 
   <% @powders.each do |powder| %>
+  <%# if recogise same letter, next stop loop %>
   <tr>
-  <td class="hour" rowspan="1" ><%= powder.pin_yin[0].upcase %></td>
-  <td><%= powder.name %></td>
-  <td><%= powder.location %></td>
-  <td><%= powder.qty_onhand %></td>
+    <td class="hour" rowspan="1" ><%= powder.pin_yin[0].upcase %></td>
+    <td><%= powder.name %></td>
+    <td><%= powder.location %></td>
+    <td><%= powder.qty_onhand %></td>
   </tr>
   <% end %>
   </tbody>
