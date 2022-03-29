@@ -58,15 +58,11 @@
   </thead>
   <tbody>
 
-    <% counts = Hash.new(0) %>
-    <% @powders.each {|i| counts[i.pin_yin[0]] += 1} %>
-    <%= counts %>
-
   <% @powders.each do |powder| %>
   <%# if recogise same letter, next stop loop %>
   <tr>
     <td class="hour" rowspan="1" ><%= powder.pin_yin[0].upcase %></td>
-    <td><%= powder.name %></td>
+    <td><%= link_to "#{powder.name}", powder_path(powder.id)%></td>
     <td><%= powder.location %></td>
     <td><%= powder.qty_onhand %></td>
   </tr>
@@ -75,3 +71,5 @@
 
 </table>
     <%= link_to '入库', import_powders_path, class:"btn btn primary" %>
+    <%= link_to '出库', export_powders_path, class:"btn btn primary" %>
+    <%= link_to "全部库存", powders_path, class:"btn btn primary" %>
