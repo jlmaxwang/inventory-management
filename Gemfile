@@ -66,3 +66,5 @@ gem "roo", "~> 2.8"
 gem 'caxlsx'
 gem 'caxlsx_rails'
 gem 'roo-xls'
+#
+gem 'pg_search'

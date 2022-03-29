@@ -1,0 +1,14 @@
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title"><%= @powder.name %></h5>
+    <h6 class="card-subtitle mb-2 text-muted">现有库存：<%= @powder.qty_onhand + @powder.qty_import %></h6>
+    <p class="card-text">库位:<%= @powder.location %></p>
+    <p class="card-text">今日入库：<%= @powder.qty_import %></p>
+    <p class="card-text">零售价：<%= @powder.price_retail %></p>
+    <p class="card-text">进货价：<%= @powder.price_bulk %></p>
+    <a href="<%= powders_path %>" class="card-link">返回</a>
+    <a href="<%= edit_powder_path(@powder.id) %>" class="card-link mb-3">编辑</a>
+    <%= link_to "删除", powder_path(@powder.id), method: :delete, data:{ confirm: '确认?' }, class: "card-link mb-3" %>
+    </a>
+  </div>
+</div>

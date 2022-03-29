@@ -2,22 +2,31 @@ class PowdersController < ApplicationController
   before_action :set_powder, only:[:show, :select, :update, :edit, :destroy]
 
   def index
-    @powders = Powder.all
     @powders = policy_scope(Powder)
+    if params[:query].present?
+      @powders = Powder.search_by_name_and_pin_yin(params[:query])
+    else
+      # @powders = Powder.all
+      @powders = Powder.order('pin_yin ASC')
+    end
     respond_to do |format|
+      format.html { render :index }
+      format.json { render json: { powders: @powders } }
       format.xls
       format.xlsx { response.headers['Content-Disposition'] = 'attachment; filename="powders.xlsx"' }
-      format.html { render :index }
     end
   end
 
   def show
+    authorize @powder
   end
 
   def edit
+    authorize @powder
   end
 
   def update
+    authorize @powder
     if @powder.update(powder_params)
       redirect_to powders_path, notice: "已成功更新#{@powder.name}"
     else
@@ -76,25 +85,14 @@ class PowdersController < ApplicationController
         powder = Powder.find_by_name(row['name'])
         powder.attributes = row.to_hash
         if powder.qty_onhand < powder.qty_export
-          break redirect_to powders_path, notice: 'kucunbuzu'
+          break redirect_to powders_path, notice: "'#{powder.name}'库存不足"
         else
           powder.qty_onhand -= powder.qty_export
           powder.save
         end
       end
     end
-    redirect_to powders_path
   end
-
-  # def spreadsheet
-  #   spreadsheet = Powder.open_spreadsheet(params[:file])
-  #   header = spreadsheet.row(1)
-  #   (2..spreadsheet.last_row).each do |i|
-  #     row = Hash[[header, spreadsheet.row(i)].transpose]
-  #     @powder = Powder.find_by_name(row['name'])
-  #     @powder.attributes = row.to_hash
-  #   end
-  # end
 
   def select
   end
@@ -106,6 +104,6 @@ class PowdersController < ApplicationController
   end
 
   def powder_params
-    params.require(:powder).permit(:name, :pinyin, :botanical_name, :qty_init, :qty_import, :qty_export, :location, :price_retail, :price_bulk, :qty_onhand)
+    params.require(:powder).permit(:name, :pin_yin, :qty_onhand, :qty_import, :qty_export, :location, :price_retail, :price_bulk)
   end
 end

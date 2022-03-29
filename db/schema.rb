@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_24_143223) do
+ActiveRecord::Schema.define(version: 2022_03_27_080409) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_trgm"
   enable_extension "plpgsql"
 
   create_table "customers", force: :cascade do |t|
@@ -27,7 +28,7 @@ ActiveRecord::Schema.define(version: 2022_03_24_143223) do
     t.decimal "price_bulk"
     t.decimal "price_retail"
     t.integer "qty_init", default: 0
-    t.integer "qty_import"
+    t.integer "qty_import", default: 0
     t.integer "qty_export", default: 0
     t.string "location"
     t.string "comment"
