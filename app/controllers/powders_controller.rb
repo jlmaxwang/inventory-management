@@ -6,7 +6,6 @@ class PowdersController < ApplicationController
     if params[:query].present?
       @powders = Powder.search_by_name_and_pin_yin(params[:query])
     else
-      # @powders = Powder.all
       @powders = Powder.order('pin_yin ASC')
     end
     respond_to do |format|
@@ -76,7 +75,7 @@ class PowdersController < ApplicationController
 
   def export_powder
     if params[:file].nil?
-      redirect_to export_powders_path, notice: '请上传文件'
+      redirect_to export_powders_path, notice: '请上传文件' and return
     else
       spreadsheet = Powder.open_spreadsheet(params[:file])
       header = spreadsheet.row(1)
@@ -85,12 +84,13 @@ class PowdersController < ApplicationController
         powder = Powder.find_by_name(row['name'])
         powder.attributes = row.to_hash
         if powder.qty_onhand < powder.qty_export
-          break redirect_to powders_path, notice: "'#{powder.name}'库存不足"
+          redirect_to powders_path, notice: "'#{powder.name}'库存不足" and return
         else
           powder.qty_onhand -= powder.qty_export
           powder.save
         end
       end
+      redirect_to powders_path, notice: "成功出库'#{params[:file].original_filename}'"
     end
   end
 

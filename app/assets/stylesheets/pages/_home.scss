@@ -1,4 +1,50 @@
 // Specific CSS for your home-page
-.landing-buttons {
-  font-size: large;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+.bg-image {
+
+  background: image-url('2020-05-10.jpeg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  filter: blur(6px);
+  overflow: hidden;
+  -webkit-filter: blur(8px);
+}
+.container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform:translate(-50%,-50%);
+  margin: 0 auto;
+  h1{
+    z-index: 2;
+    margin: 0px auto;
+    font-size:70px ;
+    font-family: 'Ma Shan Zheng', cursive;
+    text-align: center;
+    font-weight: bolder;
+    color: #9c0202;
+    text-shadow: 1px 0px 1px #CCCCCC, 0px 1px 1px #EEEEEE, 2px 1px 1px #CCCCCC, 1px 2px 1px #EEEEEE, 3px 2px 1px #CCCCCC, 2px 3px 1px #EEEEEE, 4px 3px 1px #CCCCCC, 3px 4px 1px #EEEEEE, 5px 4px 1px #CCCCCC, 4px 5px 1px #EEEEEE, 6px 5px 1px #CCCCCC, 5px 6px 1px #EEEEEE, 7px 6px 1px #CCCCCC;
+  }
+  .form-body {
+    z-index: 2;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.4);
+    margin-top: 20px;
+    .form-label {
+      color: #CCCCCC;
+      font-size: 1em;
+    }
+    .form-check-label {
+      color: #CCCCCC;
+      font-size: 1em;
+    }
+  }
 }
