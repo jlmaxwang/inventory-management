@@ -1,3 +1,23 @@
-<% render 'shared/navbar' %>
-<h1><%= @powder.name %></h1>
-<%= render 'card',rescources: @powder  %>
+<%= render 'shared/navbar' %>
+<div class="show-background-img"></div>
+<div class="container">
+  <h1 class="text-center"><%= @powder.name %></h1>
+  <div class="card text-black blurred-box">
+    <div class="card-body">
+      <div class="card-information">
+          <p><%= @powder.name %></p>
+          <p>现有库存：<%= @powder.qty_onhand + @powder.qty_import %></p>
+          <p>库位:<%= @powder.location %></p>
+          <p>零售价：<%= @powder.price_retail %></p>
+          <p>进货价：<%= @powder.price_bulk %></p>
+          <p>备注：<%= @powder.comment %></p>
+      </div>
+      <div class="mt-3">
+      <a href="<%= powders_path %>" class="btn hvr-float-shadow">返回</a>
+      <a href="<%= edit_powder_path(@powder.id) %>" class="btn hvr-float-shadow">编辑</a>
+      <%= link_to "删除", powder_path(@powder.id), method: :delete, data:{ confirm: '确认?' }, class: "btn hvr-float-shadow" %>
+      </a>
+      </div>
+    </div>
+  </div>
+</div>
