@@ -4,7 +4,7 @@ class PowdersController < ApplicationController
   def index
     @powders = policy_scope(Powder)
     if params[:query].present?
-      @powders = Powder.search_by_name_and_pin_yin(params[:query])
+      @powders = Powder.search_by_name_and_pin_yin_and_location(params[:query])
     else
       @powders = Powder.order('pin_yin ASC')
     end
@@ -27,7 +27,7 @@ class PowdersController < ApplicationController
   def update
     authorize @powder
     if @powder.update(powder_params)
-      redirect_to powders_path, notice: "已成功更新#{@powder.name}"
+      redirect_to powder_path(@powder.id), notice: "已成功更新#{@powder.name}"
     else
       render :edit
     end
@@ -82,6 +82,7 @@ class PowdersController < ApplicationController
       (2..spreadsheet.last_row).each do |i|
         row = Hash[[header, spreadsheet.row(i)].transpose]
         powder = Powder.find_by_name(row['name'])
+          # "未找到#{row['name']}"
         powder.attributes = row.to_hash
         if powder.qty_onhand < powder.qty_export
           redirect_to powders_path, notice: "'#{powder.name}'库存不足" and return
