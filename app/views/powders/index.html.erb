@@ -12,7 +12,7 @@
       <% end %>
     </div>
   <div class="mx-5 my-1">
-    <%= link_to "新增药品", new_powder_path, class:'btn btn-outline-primary'%>
+    <%= link_to "新增药品", new_powder_path, class:'btn btn-primary'%>
   </div>
     <table class="px-5">
       <thead>
@@ -30,17 +30,15 @@
         </tr>
       </thead>
       <tbody>
-
-      <% @powders.each do |powder| %>
-      <%# if recogise same letter, next stop loop %>
-      <tr>
-        <td class="hour" rowspan="1" ><%= powder.pin_yin[0].upcase %></td>
-        <td><%= link_to "#{powder.name}", powder_path(powder.id)%></td>
-        <td><%= powder.location %></td>
-        <td><%= powder.qty_onhand %></td>
-      </tr>
-      <% end %>
+        <% @powders.each do |powder| %>
+        <%# if recogise same letter, next stop loop %>
+        <tr>
+          <td class="hour" rowspan="1" ><%= powder.pin_yin[0].upcase %></td>
+          <td><%= link_to "#{powder.name}", powder_path(powder.id)%></td>
+          <td><%= powder.location %></td>
+          <td><%= powder.qty_onhand %></td>
+        </tr>
+        <% end %>
       </tbody>
-
     </table>
 </div>
