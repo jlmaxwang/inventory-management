@@ -1,20 +1,23 @@
 <%= render 'shared/navbar' %>
 <p id="notice"><%= notice %></p>
-<div class="edit-background-img"></div>
-<div class="container mt-2">
-  <h1>修改药品信息</h1>
-  <div class="edit-form">
-    <%= simple_form_for @powder do |f| %>
-      <%= f.error_notification %>
-      <%= f.input :name, label: "名称" %>
-      <%= f.input :pin_yin, label: "拼音" %>
-      <%= f.input :qty_import, label: "数量" %>
-      <%= f.input :price_retail, label: "零售价格" %>
-      <%= f.input :price_bulk, label: "进货价格" %>
-      <%= f.input :location, label: "库位" %>
-      <%= f.input :comment, label:'备注' %>
-      <%= f.button :submit, class: 'btn btn-primary', value:'确认修改'%>
-      <%= link_to "返回", powder_path(@powder.id), class: 'btn btn-primary' %>
-    <% end %>
+<div class="index-background-img"></div>
+<div class="main-container">
+  <div class="edit-background-img"></div>
+  <div class="container mt-2">
+    <h1>修改药品信息</h1>
+    <div class="edit-form blurred-box">
+      <%= simple_form_for @powder do |f| %>
+        <%= f.error_notification %>
+        <%= f.input :name, label: "名称" %>
+        <%= f.input :pin_yin, label: "拼音" %>
+        <%= f.input :qty_import, label: "数量" %>
+        <%= f.input :price_retail, label: "零售价格" %>
+        <%= f.input :price_bulk, label: "进货价格" %>
+        <%= f.input :location, label: "库位" %>
+        <%= f.input :comment, label:'备注' %>
+        <%= f.button :submit, class: 'btn btn-primary', value:'确认修改'%>
+        <%= link_to "返回", powder_path(@powder.id), class: 'btn btn-primary' %>
+      <% end %>
+    </div>
   </div>
 </div>
