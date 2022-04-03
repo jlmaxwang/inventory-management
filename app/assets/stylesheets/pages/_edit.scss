@@ -1,10 +1,24 @@
 // Specific CSS for edit-page
 
-.container {
-  .edit-form {
-    width: 50%;
-    .btn-primary {
-      text-align: center;
-    }
+.main-container {
+  z-index: index;
+    body,
+  .blurred-box {
+    position: relative; max-width: 50%;
+    margin: 5em auto; padding: 1em;
+    background: rgba(White, .3); border-radius: .3em;
+    box-shadow: 0 0 6em 0 rgba(black, .4), 0 0 1em 0 rgba(black, .3);
+    overflow: hidden;
   }
-}
+  .blurred-box::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+    margin: -3em; // min margin needed for blur gradient on edges
+    z-index: -1;
+    filter: blur(20px);
+  }
+  .blurred-box :last-child {
+    margin: 0;
+  }
+  }
