@@ -6,7 +6,7 @@ class PowdersController < ApplicationController
     if params[:query].present?
       @powders = Powder.search_by_name_and_pin_yin_and_location(params[:query])
     else
-      @powders = Powder.order('pin_yin ASC')
+      @powders = Powder.order(params[:sort])
     end
     respond_to do |format|
       format.html { render :index }
