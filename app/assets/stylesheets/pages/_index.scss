@@ -19,11 +19,18 @@
   left: 50%;
   top: 50%;
   transform:translate(-50%,-50%);
-  margin: 0 auto;
+  margin: 10px auto;
   z-index: 2;
   .searchbar {
     width:50%;
     margin:10px auto;
+    form {
+      display: flex;
+      justify-content: space-between;
+      .btn {
+        margin-left: 5px;
+      }
+    }
   }
   table{
   font-family:sans-serif;
@@ -41,7 +48,13 @@
                   color: $light;
                   padding: 0.5em;
                   overflow: hidden;
-
+                  a {
+                    background: $blue;
+                    color: $light;
+                    overflow: hidden;
+                    padding: 0.5em;
+                    text-decoration: none;
+                  }
                   &:first-child{
                       width: 10%;
                       border-radius:3px 0 0 0;
@@ -156,7 +169,7 @@
               tr{
                   td{
                       &.hour{
-                          font-size: 1.7em;
+                          font-size: 1em;
                           span{
                             transform:translateY(16px)rotate(270deg);
               -webkit-transform:translateY(16px)rotate(270deg);
