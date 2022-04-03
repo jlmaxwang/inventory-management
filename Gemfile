@@ -68,3 +68,4 @@ gem 'caxlsx_rails'
 gem 'roo-xls'
 #
 gem 'pg_search'
+gem "font-awesome-rails"
