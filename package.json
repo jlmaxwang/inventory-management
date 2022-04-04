@@ -9,6 +9,7 @@
     "@rails/webpacker": "5.4.3",
     "bootstrap": "^5.1.3",
     "hover.css": "^2.3.2",
+    "isotope-layout": "^3.0.6",
     "stimulus": "^3.0.1",
     "turbolinks": "^5.2.0",
     "webpack": "^4.46.0",
