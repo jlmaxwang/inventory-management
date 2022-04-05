@@ -6,10 +6,10 @@
     <div class="card-body">
       <div class="card-information">
           <p><%= @powder.name %></p>
-          <p>现有库存：<%= @powder.qty_onhand + @powder.qty_import %></p>
+          <p>现有库存：<%= @powder.qty_onhand %></p>
           <p>库位:<%= @powder.location %></p>
-          <p>零售价：<%= @powder.price_retail %></p>
-          <p>进货价：<%= @powder.price_bulk %></p>
+          <p>零售价：<%= @powder.price_retail.round(2) %></p>
+          <p>进货价：<%= @powder.price_bulk.round(2) %></p>
           <p>备注：<%= @powder.comment %></p>
       </div>
       <div class="mt-3">
