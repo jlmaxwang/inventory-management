@@ -29,6 +29,14 @@ class SuppliersController < ApplicationController
     end
   end
 
+  def destroy
+  end
+
+  def destroy
+    authorize @supplier
+    @supplier.destroy
+    redirect_to powders_path, notice: '已删除供应商'
+  end
   private
 
   def set_supplier
