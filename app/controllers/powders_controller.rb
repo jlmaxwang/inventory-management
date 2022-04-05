@@ -6,7 +6,7 @@ class PowdersController < ApplicationController
     if params[:query].present?
       @powders = Powder.search_by_name_and_pin_yin_and_location(params[:query])
     else
-      @powders = Powder.order('pin_yin ASC')
+      @powders = Powder.order(params[:sort])
     end
     respond_to do |format|
       format.html { render :index }
@@ -96,6 +96,7 @@ class PowdersController < ApplicationController
   end
 
   def select
+
   end
 
   private
@@ -105,6 +106,6 @@ class PowdersController < ApplicationController
   end
 
   def powder_params
-    params.require(:powder).permit(:name, :pin_yin, :qty_onhand, :qty_import, :qty_export, :location, :price_retail, :price_bulk)
+    params.require(:powder).permit(:name, :pin_yin, :qty_onhand, :qty_import, :qty_export, :location, :price_retail, :price_bulk, :comment)
   end
 end
