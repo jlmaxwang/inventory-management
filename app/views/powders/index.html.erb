@@ -1,6 +1,6 @@
 <%= render 'shared/navbar' %>
-<div class="index-background-img"></div>
-<div class="container">
+<%# <div class="index-background-img"></div> %>
+<div class="main-container mt-5">
     <div class="searchbar">
       <%= form_tag powders_path, method: :get do %>
         <%= text_field_tag :query,

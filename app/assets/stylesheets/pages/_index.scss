@@ -14,13 +14,13 @@
   -webkit-filter: blur(3px);
 }
 
-.container {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform:translate(-50%,-50%);
-  margin: 10px auto;
-  z-index: 2;
+.main-container {
+  // position: absolute;
+  // left: 50%;
+  // top: 50%;
+  // transform:translate(-50%,-50%);
+  // margin: 10px auto;
+  // z-index: 2;
   .searchbar {
     width:50%;
     margin:10px auto;
