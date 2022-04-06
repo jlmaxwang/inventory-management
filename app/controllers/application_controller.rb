@@ -27,6 +27,10 @@ class ApplicationController < ActionController::Base
     root_path
   end
 
+  def current_export_list
+    current_user.export_list
+  end
+
   private
 
   def skip_pundit?
