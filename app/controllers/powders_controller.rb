@@ -73,6 +73,7 @@ class PowdersController < ApplicationController
   def export
   end
 
+
   def export_powder
     if params[:file].nil?
       redirect_to export_powders_path, notice: '请上传文件' and return
@@ -93,10 +94,6 @@ class PowdersController < ApplicationController
       end
       redirect_to powders_path, notice: "成功出库'#{params[:file].original_filename}'"
     end
-  end
-
-  def select
-
   end
 
   private

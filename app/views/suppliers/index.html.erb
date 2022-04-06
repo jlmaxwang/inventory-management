@@ -1,0 +1,6 @@
+<h1>Suppliers</h1>
+
+<% @suppliers.each do |supplier| %>
+<p>供应商：<%= supplier.name %></p>
+<% end %>
+<%= link_to "新增供应商", new_supplier_path, class:'btn btn-primary', type:'button' %>

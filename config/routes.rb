@@ -10,4 +10,7 @@ Rails.application.routes.draw do
       post :import_powder, :export_powder
     end
   end
+  resources :export_lists, only: [:new, :create]
+  resources :suppliers
+  resources :customers
 end

@@ -12,6 +12,12 @@
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <li class="nav-item active">
+            <%= link_to '供应商列表',suppliers_path, class: "btn btn primary nav-link"%>
+          </li>
+          <li class="nav-item active">
+            <%= link_to '客户列表',customers_path, class: "btn btn primary nav-link"%>
+          </li>
+          <li class="nav-item active">
             <%= link_to '导出全部库存Excel', powders_path(format: :xlsx), class: "btn btn primary nav-link"%>
           </li>
           <li class="nav-item">

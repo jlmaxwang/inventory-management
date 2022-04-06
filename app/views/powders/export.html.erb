@@ -1,5 +1,45 @@
 <%= render 'shared/navbar' %>
-<div class="export-container mt-5">
-  <h1>Export</h1>
+<div class="export-container">
+  <div class="mass-export mt-5">
+      <%= form_tag export_powder_powders_path, multipart: true do %>
+      <%= label_tag :file, '选择出库单' %>
+      <%= file_field_tag :file %>
+      <%= submit_tag "上传出库单", class:"btn btn-mini btn-success hidden" %>
+      <% end %>
+  </div>
+                    <% if false %>
+                      <div class="main-container mt-5">
+                        <h1>Export</h1>
+                        <div class="all-powders" >
+                          <table class="px-5">
+                            <thead>
+                              <tr>
+                                <th><span class="long table-column"><%= link_to "首字母", sort: "pin_yin", class:"long table-column"%><i class="fa-solid fa-arrow-down-a-z"></i></span></th>
+                                <th>
+                                  <i class="fa-solid fa-arrow-down-a-z"></i>
+                                  <span class="long table-column">名称</span>
+                                </th>
+                                <th>
+                                  <span class="long table-column"><%= link_to "库位", sort: "location" %></span>
+                                </th>
+                                <th>
+                                  <span class="long table-column"><%= link_to "库存", sort: "qty_onhand" %></span>
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody class="powder-items" id="powder-items">
+                              <% @powders.each do |powder| %>
+                              <tr>
+                                <td class="hour" rowspan="1" ><%= powder.pin_yin[0].upcase %></td>
+                                <td><input type="checkbox" name="tag_ids[]"><span id="powder-name"><%= link_to "#{powder.name}", powder_path(powder.id)%></span></td>
+                                <td><span id="location"><%= powder.location %></span></td>
+                                <td><span id="qty-onhand"><%= powder.qty_onhand %></span></td>
+                              </tr>
+                              <% end %>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    <% end %>
 
 </div>
