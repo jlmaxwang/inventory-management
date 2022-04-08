@@ -12,7 +12,7 @@ class ExportListsController < ApplicationController
   end
 
   def create
-    @export_list = ExportList.new({ powder_id: params[:export_list][:powder_id].reject(&:empty?), export_qty: params[:export_list][:export_qty] })
+    @export_list = ExportList.new(export_list_params)
     authorize @export_list
     @export_list.save
     redirect_to powders_path
