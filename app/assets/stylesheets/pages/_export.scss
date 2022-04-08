@@ -1,11 +1,12 @@
-.export-container {
-  margin: 0 auto;
-  .export-list-form {
+  .mass-export {
     display: flex;
-    justify-content:space-between ;
-    margin: 0 20px;
-    .simple_form {
-      flex-wrap: wrap;
+    justify-content: space-evenly;
+    max-width: 100% !important;
+    flex-direction: column;
+    :first-child {
+      font-size: 2em;
     }
+    a.btn.btn-primary.back {
+      margin: 20px 40%;
   }
-}
+  }
