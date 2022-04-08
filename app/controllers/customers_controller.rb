@@ -2,7 +2,7 @@ class CustomersController < ApplicationController
   before_action :set_supplier, only: [:show, :update, :destroy, :edit]
 
   def index
-    @suppliers = policy_scope(Customer)
+    @customers = policy_scope(Customer)
     @customers = Customer.all
   end
 

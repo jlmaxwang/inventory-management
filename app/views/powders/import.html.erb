@@ -1,6 +1,9 @@
-<h1>ruku</h1>
-<%= form_tag import_powder_powders_path, multipart: true do %>
-  <%= label_tag :file, '选择入库单' %>
-  <%= file_field_tag :file %>
-  <%= submit_tag "上传入库单", class:"btn btn-mini btn-success hidden" %>
-<% end %>
+<%= render 'shared/navbar' %>
+<div class="main-container mt-5">
+  <h1>ruku</h1>
+  <%= form_tag import_powder_powders_path, multipart: true do %>
+    <%= label_tag :file, '选择入库单' %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "上传入库单", class:"btn btn-mini btn-success hidden" %>
+  <% end %>
+</div>

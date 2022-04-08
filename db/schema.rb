@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2022_04_05_135913) do
 
   create_table "export_lists", force: :cascade do |t|
     t.bigint "powder_id", null: false
+    t.integer "export_qty"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["powder_id"], name: "index_export_lists_on_powder_id"

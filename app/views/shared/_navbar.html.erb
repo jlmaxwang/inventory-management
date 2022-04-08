@@ -32,6 +32,9 @@
           <li class="nav-item">
             <%= link_to "退出", destroy_user_session_path, method: :delete , class:"nav-link"%>
           </li>
+          <li class="nav-item">
+            <%= link_to "exportlist", new_export_list_path, class:"nav-link"%>
+          </li>
         <% else %>
           <li class="nav-item">
             <%= link_to "登陆", new_user_session_path, class: "nav-link" %>
