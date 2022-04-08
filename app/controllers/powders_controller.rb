@@ -71,6 +71,8 @@ class PowdersController < ApplicationController
   end
 
   def export
+    @powders = Powder.all
+    @export_list_ids = ExportList.new(params[:powders])
   end
 
   def export_powder
@@ -95,10 +97,6 @@ class PowdersController < ApplicationController
     end
   end
 
-  def select
-
-  end
-
   private
 
   def set_powder
@@ -108,4 +106,5 @@ class PowdersController < ApplicationController
   def powder_params
     params.require(:powder).permit(:name, :pin_yin, :qty_onhand, :qty_import, :qty_export, :location, :price_retail, :price_bulk, :comment)
   end
+
 end

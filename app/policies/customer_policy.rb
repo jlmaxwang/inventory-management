@@ -1,4 +1,4 @@
-class PowderPolicy < ApplicationPolicy
+class CustomerPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
@@ -31,22 +31,6 @@ class PowderPolicy < ApplicationPolicy
   end
 
   def destroy?
-    true
-  end
-
-  def import?
-    true
-  end
-
-  def export?
-    true
-  end
-
-  def import_powder?
-    true
-  end
-
-  def export_powder?
     true
   end
 

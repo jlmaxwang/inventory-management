@@ -1,0 +1,11 @@
+.export-container {
+  margin: 0 auto;
+  .export-list-form {
+    display: flex;
+    justify-content:space-between ;
+    margin: 0 20px;
+    .simple_form {
+      flex-wrap: wrap;
+    }
+  }
+}

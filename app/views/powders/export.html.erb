@@ -1,5 +1,48 @@
 <%= render 'shared/navbar' %>
 <div class="export-container">
-  <h1>export</h1>
-
+  <div class="mass-export mt-5">
+      <%= form_tag export_powder_powders_path, multipart: true do %>
+      <%= label_tag :file, '选择出库单' %>
+      <%= file_field_tag :file %>
+      <%= submit_tag "上传出库单", class:"btn btn-mini btn-success hidden" %>
+      <% end %>
+  </div>
+  <% if false %>
+    <div class="export-list-form">
+      <%= simple_form_for @export_list do |f| %>
+        <% Powder.all.map do |powder| %>
+        <%# <%= f.input :powder, as: :check_boxes, collection: Powder.all.map { |powder| [powder.name, powder.id, { class: 'export-list' }]} %>
+        <%= f.input :powder_id, as: :boolean, label: powder.name %>
+        <%= f.input :export_qty, label:"输入出库数量" %>
+        <% end %>
+        <%= f.submit 'export_list' %>
+      <% end %>
+    </div>
+  <% end %>
+  <% if false %>
+    <div class="export-list-form">
+      <form action="/export_lists/new" >
+        <% @powders.each do |powder| %>
+          <input type="checkbox" name="<%="#{powder.name}"%>" id="checkbox-<%= powder.id%>" value="<%= powder.id%>">
+          <label for="checkbox-<%= powder.id%>"><%="#{powder.name}"%></label>
+          <label for="export-qty-<%= powder.id%>">export qty</label>
+          <input type="text" name="export_qty" id="export-qty-<%= powder.id%>" value="1">
+        <% end %>
+          <input type="submit" value="submit export qty">
+      </form>
+    </div>
+  <% end %>
+  <% if false %>
+    <div class="export-list-form">
+      <%= form_tag(new_export_list_path, method: 'get', id: 'powder-select') do %>
+        <% @powders.each do |powder| %>
+          <%= check_box_tag "powders[]", powder.id %>
+          <%= powder.name %>
+          <%=  %>
+        <% end %>
+      <input type="submit" value="Submit" form="powder-select">
+      <% end %>
+    </div>
+  <% end %>
+        <%= link_to "返回", powders_path, class: 'btn btn-primary' %>
 </div>

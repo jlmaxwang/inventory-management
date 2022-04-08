@@ -1,5 +1,7 @@
 class Powder < ApplicationRecord
   validates :name, :pin_yin, :location, presence: true
+  has_and_belongs_to_many :export_list
+
   include PgSearch::Model
   pg_search_scope :search_by_name_and_pin_yin_and_location,
     against: [ :name, :pin_yin, :location ],
