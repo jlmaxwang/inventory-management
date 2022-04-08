@@ -11,12 +11,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to '供应商列表',suppliers_path, class: "btn btn primary nav-link"%>
-          </li>
-          <li class="nav-item active">
-            <%= link_to '客户列表',customers_path, class: "btn btn primary nav-link"%>
-          </li>
+          <% if false %>
+            <li class="nav-item active">
+              <%= link_to '供应商列表',suppliers_path, class: "btn btn primary nav-link"%>
+            </li>
+          <% end %>
+          <% if false %>
+            <li class="nav-item active">
+              <%= link_to '客户列表',customers_path, class: "btn btn primary nav-link"%>
+            </li>
+          <% end %>
           <li class="nav-item active">
             <%= link_to '导出全部库存Excel', powders_path(format: :xlsx), class: "btn btn primary nav-link"%>
           </li>
@@ -26,15 +30,19 @@
           <li class="nav-item">
             <%= link_to '出库', export_powders_path, class:"btn btn primary nav-link" %>
           </li>
-          <li class="nav-item">
-            <%= link_to 'Invoice',powders_path, class:"btn btn primary nav-link"%>
-          </li>
+          <% if false %>
+            <li class="nav-item">
+              <%= link_to 'Invoice',powders_path, class:"btn btn primary nav-link"%>
+            </li>
+          <% end %>
           <li class="nav-item">
             <%= link_to "退出", destroy_user_session_path, method: :delete , class:"nav-link"%>
           </li>
-          <li class="nav-item">
-            <%= link_to "exportlist", new_export_list_path, class:"nav-link"%>
-          </li>
+          <% if false %>
+            <li class="nav-item">
+              <%= link_to "exportlist", new_export_list_path, class:"nav-link"%>
+            </li>
+          <% end %>
         <% else %>
           <li class="nav-item">
             <%= link_to "登陆", new_user_session_path, class: "nav-link" %>
