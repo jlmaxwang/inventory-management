@@ -18,16 +18,17 @@
     <table class="px-5">
       <thead>
         <tr>
-          <th><span class="long table-column"><%= link_to "首字母", sort: "pin_yin", class:"long table-column"%><i class="fa-solid fa-arrow-down-a-z"></i></span></th>
           <th>
-            <i class="fa-solid fa-arrow-down-a-z"></i>
-            <span class="long table-column">名称</span>
+            <span><%= link_to "首字母", sort: "pin_yin", class:"long table-column"%></span>
           </th>
           <th>
-            <span class="long table-column"><%= link_to "库位", sort: "location" %></span>
+            <span>名称</span>
           </th>
           <th>
-            <span class="long table-column"><%= link_to "库存", sort: "qty_onhand" %></span>
+            <span><%= link_to "库位", sort: "location" %></span>
+          </th>
+          <th>
+            <span><%= link_to "库存", sort: "qty_onhand" %></span>
           </th>
         </tr>
       </thead>

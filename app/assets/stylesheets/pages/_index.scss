@@ -152,7 +152,7 @@
                           display: block;
                           font-size: 1.2em;
                           border-radius: 50%;
-                                width: 20px;
+                          width: 20px;
                           height: 20px;
                           margin: 0 auto 5px;
                           padding: 5px;
@@ -171,9 +171,9 @@
                       &.hour{
                           font-size: 1em;
                           span{
-                            transform:translateY(16px)rotate(270deg);
-              -webkit-transform:translateY(16px)rotate(270deg);
-              -moz-transform:translateY(16px)rotate(270deg);
+              //               transform:translateY(16px)rotate(270deg);
+              // -webkit-transform:translateY(16px)rotate(270deg);
+              // -moz-transform:translateY(16px)rotate(270deg);
                           }
                       }
           }
