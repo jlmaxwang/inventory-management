@@ -1,0 +1,12 @@
+<%= render 'shared/navbar' %>
+<p id="notice"><%= notice %></p>
+<div class="index-background-img"></div>
+<div class="container">
+  <div class="edit-form blurred-box mt-5">
+    <%= simple_form_for @export_list, remote: true do |f| %>
+      <%= f.input :powder_id, collection: Powder.all, label:'药品' %>
+      <%= f.input :export_qty, label:'出库数量' %>
+      <%= f.button :submit, class:"btn btn-primary", value:'确认修改'%>
+    <% end %>
+  </div>
+</div>

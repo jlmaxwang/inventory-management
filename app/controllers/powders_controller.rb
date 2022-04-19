@@ -1,5 +1,5 @@
 class PowdersController < ApplicationController
-  before_action :set_powder, only:[:show, :select, :update, :edit, :destroy]
+  before_action :set_powder, only:[:show, :update, :edit, :destroy]
 
   def index
     @powders = policy_scope(Powder)
