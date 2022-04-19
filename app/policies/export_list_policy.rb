@@ -10,10 +10,6 @@ class ExportListPolicy < ApplicationPolicy
     true
   end
 
-  def show?
-    true
-  end
-
   def create?
     true
   end
@@ -34,19 +30,7 @@ class ExportListPolicy < ApplicationPolicy
     true
   end
 
-  def import?
-    true
-  end
-
-  def export?
-    true
-  end
-
-  def import_powder?
-    true
-  end
-
-  def export_powder?
+  def export_current_list?
     true
   end
 
