@@ -2,7 +2,7 @@
 <%# <div class="index-background-img"></div> %>
 <div class="main-container mt-5">
     <div class="searchbar">
-      <%= form_tag powders_path, method: :get, remote: true do %>
+      <%= form_tag powders_path, method: :get do %>
         <%= text_field_tag :query,
           params[:query],
           class: "form-control rounded-pill",
