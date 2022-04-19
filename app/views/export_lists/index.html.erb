@@ -9,12 +9,19 @@
       <%= f.submit '添加药品', class:"btn btn-primary"%>
     <% end %>
   </div>
+  <div class="button-group m-3">
+    <%= link_to '导出出库单', export_lists_path(format: :xlsx), class: "btn btn-primary"%>
+    <%= form_tag export_current_list_export_lists_path do %>
+      <%= submit_tag "确认出库", class:"btn btn-primary" %>
+    <% end %>
+  </div>
 
   <div class="main-container">
     <table class="px-5">
       <thead>
         <th>名称</th>
         <th>出库数量</th>
+        <th>库位</th>
         <th></th>
         <th></th>
       </thead>
@@ -23,6 +30,7 @@
           <tr>
             <td class="hour" rowspan="1" ><%= @powders.find(item.powder_id).name %></td>
             <td><%= item.export_qty %></td>
+            <td><%= @powders.find(item.powder_id).location %></td>
             <td>
               <%= link_to '修改', edit_export_list_path(item.id) %>
             </td>
@@ -34,8 +42,4 @@
       </tbody>
     </table>
   </div>
-</div>
-
-<div>
-
 </div>

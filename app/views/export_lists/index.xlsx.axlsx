@@ -1,0 +1,7 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Powders") do |sheet|
+  sheet.add_row ["名称", "库位", "出库数量"]
+  @export_lists.each do |item|
+    sheet.add_row [Powder.find(item.powder_id).name, Powder.find(item.powder_id).location, item.export_qty]
+  end
+end
