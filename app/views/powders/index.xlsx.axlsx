@@ -1,7 +1,7 @@
 wb = xlsx_package.workbook
 wb.add_worksheet(name: "Powders") do |sheet|
-  sheet.add_row ["name", "pin_yin", "price_retail", "location", "qty_import"]
+  sheet.add_row ["名称", "拼音", "零售价", "库位", "库存"]
   @powders.each do |powder|
-    sheet.add_row [powder.name, powder.pin_yin, powder.price_retail, powder.location, powder.qty_init]
+    sheet.add_row [powder.name, powder.pin_yin, powder.price_retail, powder.location, powder.qty_onhand]
   end
 end
