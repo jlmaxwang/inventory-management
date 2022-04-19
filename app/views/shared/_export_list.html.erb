@@ -1,0 +1,22 @@
+<%= form_with(model: export_list) do |f| %>
+  <% if export_list.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(export_list.errors.count, 'error') %>药品重复</h2>
+      <ul>
+        <% export_list.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :powder_id %>
+    <%= f.select :powder_id, options_from_collection_for_select(Powder.all, :id, :name),  include_blank: '加入药品' , class: 'form-control' %>
+    <%= f.label :export_qty %>
+    <%= f.text_field :export_qty %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

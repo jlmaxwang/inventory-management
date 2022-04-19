@@ -1,14 +1,1 @@
-<%= render 'shared/navbar' %>
-<p id="notice"><%= notice %></p>
-<div class="main-container mt-5">
-      <h1>exportlist create @export_list instance </h1>
-  <%= simple_form_for @export_list do |f| %>
-      <% if false %>
-        <%= f.input :powders, as: :check_boxes, collection: Powder.all.map.drop(1) { |powder| [powder.name, powder.id, { class: 'export-list' }]} %>
-        <%= f.button :submit, label: 'export_list' %>
-      <% end %>
-        <%= f.input :powder_id, as: :check_boxes, collection: Powder.all.map { |powder| [powder.name, powder.id, { class: 'export-list' }]} %>
-        <%= f.input :export_qty %>
-        <%= f.submit 'create export list'%>
-  <% end %>
-</div>
+<h1>创建出库单</h1>

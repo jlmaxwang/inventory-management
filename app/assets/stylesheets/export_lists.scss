@@ -1,3 +1,27 @@
 // Place all the styles related to the export_lists controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.export-list{
+
+  .export-list-table {
+    width: 100%;
+    tr {
+      border-bottom-style: solid;
+      border-bottom-width: 1px;
+      border-bottom-color: #efefef;
+
+      th {
+        color: #82828C;
+        font-size: 12px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-right: 20px;
+      }
+      td {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-right: 20px;
+      }
+    }
+  }
+}

@@ -1,2 +1,41 @@
-<h1>all export list</h1>
-<%= @export_lists %>
+<%= render 'shared/navbar', export_lists: @export_list %>
+<div class="index-background-img"></div>
+<div class="export-list container mt-5">
+  <h1 class="mt-5">创建出库单</h1>
+  <div class="export-list-form">
+    <%= simple_form_for @export_list, remote: true do |f| %>
+      <%= f.input :powder_id, collection: Powder.all, label:'药品' %>
+      <%= f.input :export_qty, label:'出库数量' %>
+      <%= f.submit '添加药品', class:"btn btn-primary"%>
+    <% end %>
+  </div>
+
+  <div class="main-container">
+    <table class="px-5">
+      <thead>
+        <th>名称</th>
+        <th>出库数量</th>
+        <th></th>
+        <th></th>
+      </thead>
+      <tbody>
+        <% @export_lists.each do |item| %>
+          <tr>
+            <td class="hour" rowspan="1" ><%= @powders.find(item.powder_id).name %></td>
+            <td><%= item.export_qty %></td>
+            <td>
+              <%= link_to '修改', edit_export_list_path(item.id) %>
+            </td>
+            <td>
+              <%= link_to '删除', export_list_path(item.id) ,method: :delete, data: { confirm: '确认？'} %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div>
+
+</div>
