@@ -41,11 +41,15 @@ class ExportListsController < ApplicationController
     authorize @export_lists
     @export_lists.each do |item|
       @powder = Powder.find(item.powder_id)
-      @powder.qty_onhand -= item.export_qty
+      if @powder.qty_onhand < item.export_qty
+        redirect_to export_lists_path, notice: "#{@powder.name}库存不足" and return
+      else
+        @powder.qty_onhand -= item.export_qty
+        @powder.save
+        ExportList.find_each(&:destroy)
+        redirect_to powders_path, notice: '成功出库'
+      end
     end
-    @powder.save
-    @export_lists.destroy_all
-    redirect_to export_lists_path, notice: '成功出库'
   end
 
   private
