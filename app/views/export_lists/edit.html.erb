@@ -4,9 +4,10 @@
 <div class="container">
   <div class="edit-form blurred-box mt-5">
     <%= simple_form_for @export_list, remote: true do |f| %>
-      <%= f.input :powder_id, collection: Powder.all, label:'药品' %>
+      <%= f.input :powder_id, collection: Powder.all, label:'药品',style:"font-size:20px" %>
       <%= f.input :export_qty, label:'出库数量' %>
       <%= f.button :submit, class:"btn btn-primary", value:'确认修改'%>
+      <%= link_to '返回', export_lists_path, class:"btn btn-primary" %>
     <% end %>
   </div>
 </div>
