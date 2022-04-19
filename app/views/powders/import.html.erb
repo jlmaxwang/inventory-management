@@ -2,12 +2,12 @@
 <div class="index-background-img"></div>
 <div class="container">
   <h1>入库</h1>
-<div class="mass-export blurred-box">
-  <%= form_tag import_powder_powders_path, multipart: true do %>
-    <%= label_tag :file, '选择入库单' %>
-    <%= file_field_tag :file %>
-    <%= submit_tag "上传入库单", class:"btn btn-mini btn-success hidden" %>
-  <% end %>
-  <%= link_to "返回", powders_path, class: 'btn btn-primary back' %>
-</div>
+  <div class="mass-export blurred-box">
+    <%= form_tag import_powder_powders_path, multipart: true do %>
+      <%= label_tag :file, '选择入库单' %>
+      <%= file_field_tag :file %>
+      <%= submit_tag "上传入库单", class:"btn btn-mini btn-success hidden" %>
+    <% end %>
+    <%= link_to "返回", powders_path, class: 'btn btn-primary back' %>
+  </div>
 </div>

@@ -28,19 +28,19 @@
             <%= link_to '入库', import_powders_path, class:"btn btn primary nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to '出库', export_powders_path, class:"btn btn primary nav-link" %>
+            <%= link_to '批量出库', export_powders_path, class:"btn btn primary nav-link" %>
           </li>
           <% if false %>
             <li class="nav-item">
               <%= link_to 'Invoice',powders_path, class:"btn btn primary nav-link"%>
             </li>
           <% end %>
-          <li class="nav-item">
-            <%= link_to "退出", destroy_user_session_path, method: :delete , class:"nav-link"%>
-          </li>
             <li class="nav-item">
               <%= link_to "创建出库单", export_lists_path, class:"nav-link"%>
             </li>
+          <li class="nav-item">
+            <%= link_to "退出", destroy_user_session_path, method: :delete , class:"nav-link"%>
+          </li>
         <% else %>
           <li class="nav-item">
             <%= link_to "登陆", new_user_session_path, class: "nav-link" %>

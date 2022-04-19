@@ -6,6 +6,12 @@ class ExportListsController < ApplicationController
     @export_lists = ExportList.all
     @export_list = ExportList.new
     @powders = Powder.all
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: { powders: @powders } }
+      format.xls
+      format.xlsx { response.headers['Content-Disposition'] = 'attachment; filename="出库单.xlsx"' }
+    end
   end
 
   def create
@@ -30,8 +36,16 @@ class ExportListsController < ApplicationController
     redirect_to export_lists_path if @export_list.update(export_list_params)
   end
 
-  def run
-
+  def export_current_list
+    @export_lists = ExportList.all
+    authorize @export_lists
+    @export_lists.each do |item|
+      @powder = Powder.find(item.powder_id)
+      @powder.qty_onhand -= item.export_qty
+    end
+    @powder.save
+    @export_lists.destroy_all
+    redirect_to export_lists_path, notice: '成功出库'
   end
 
   private

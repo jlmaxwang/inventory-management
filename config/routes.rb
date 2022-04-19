@@ -10,7 +10,12 @@ Rails.application.routes.draw do
       post :import_powder, :export_powder
     end
   end
-  resources :export_lists
+
+  resources :export_lists do
+    collection do
+      post :export_current_list
+    end
+  end
   resources :suppliers
   resources :customers
 end
