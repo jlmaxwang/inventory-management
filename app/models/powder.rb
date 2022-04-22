@@ -28,4 +28,8 @@ class Powder < ApplicationRecord
     else raise "未知格式: #{file.original_filename}，需要.xls或.xlsx"
     end
   end
+
+  def self.sort_by_initial
+    Powder.all.sort_by { |powder| powder.pin_yin[0] }
+  end
 end
