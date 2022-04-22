@@ -4,7 +4,7 @@
   <h1 class="mt-5">创建出库单</h1>
   <div class="export-list-form">
     <%= simple_form_for @export_list, remote: true do |f| %>
-      <%= f.input :powder_id, collection: Powder.all, label:'药品' %>
+      <%= f.input :powder_id, collection: Powder.sort_by_initial, label:'药品' %>
       <%= f.input :export_qty, label:'出库数量' %>
       <%= f.submit '添加药品', class:"btn btn-primary"%>
     <% end %>
