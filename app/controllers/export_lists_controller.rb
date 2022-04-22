@@ -1,9 +1,8 @@
 class ExportListsController < ApplicationController
-  before_action :set_export_list, only:[:update, :edit, :destroy]
-
+  before_action :set_export_list, only: [:update, :edit, :destroy]
+  before_action :set_export_lists, only: [:index, :export_current_list]
   def index
     @export_lists = policy_scope(ExportList)
-    @export_lists = ExportList.all
     @export_list = ExportList.new
     @powders = Powder.all
     respond_to do |format|
@@ -37,22 +36,24 @@ class ExportListsController < ApplicationController
   end
 
   def export_current_list
-    @export_lists = ExportList.all
     authorize @export_lists
     @export_lists.each do |item|
       @powder = Powder.find(item.powder_id)
-      if @powder.qty_onhand < item.export_qty
-        redirect_to export_lists_path, notice: "#{@powder.name}库存不足" and return
-      else
-        @powder.qty_onhand -= item.export_qty
-        @powder.save
-        ExportList.find_each(&:destroy)
-        redirect_to powders_path, notice: '成功出库'
+      if @powder.qty_onhand < item.export_qty; redirect_to export_lists_path, alert: "#{@powder.name}库存不足" and return false
       end
+
+      @powder.qty_onhand -= item.export_qty
+      @powder.save
     end
+    redirect_to powders_path, notice: '成功出库'
+    ExportList.find_each(&:destroy)
   end
 
   private
+
+  def set_export_lists
+    @export_lists = ExportList.all
+  end
 
   def set_export_list
     @export_list = ExportList.find(params[:id])
