@@ -103,5 +103,4 @@ class PowdersController < ApplicationController
   def powder_params
     params.require(:powder).permit(:name, :pin_yin, :qty_onhand, :qty_import, :qty_export, :location, :price_retail, :price_bulk, :comment)
   end
-
 end
