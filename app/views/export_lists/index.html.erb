@@ -22,6 +22,7 @@
         <th>名称</th>
         <th>出库数量</th>
         <th>库位</th>
+        <th>现有库存</th>
         <th></th>
         <th></th>
       </thead>
@@ -31,6 +32,7 @@
             <td class="hour" rowspan="1" ><%= @powders.find(item.powder_id).name %></td>
             <td><%= item.export_qty %></td>
             <td><%= @powders.find(item.powder_id).location %></td>
+            <td><%= @powders.find(item.powder_id).qty_onhand %></td>
             <td>
               <%= link_to '修改', edit_export_list_path(item.id) %>
             </td>
